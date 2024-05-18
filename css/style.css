@@ -1,0 +1,40 @@
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+nav .brand-logo {
+  color: #EEEEEE;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.light-grey {
+  background: #222831;
+}
+
+.sentence-card {
+  position: sticky;
+  text-align: center;
+  padding: 12px;
+}
+
+.sentence-card .card-content {
+  padding: 0;
+}
+
+.sentence-card-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.remove-sentence {
+  background-color: #F05941 ;
+}
+
+.remove-sentence:hover {
+  background-color: #BE3144;
+}
