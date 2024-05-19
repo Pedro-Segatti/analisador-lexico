@@ -12,6 +12,21 @@ nav .brand-logo {
   transform: translateX(-50%);
 }
 
+.github-logo {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #EEEEEE;
+}
+
+.github-logo i {
+  font-size: 24px;
+}
+
+.github-logo i:hover {
+  color: #CCCCCC;
+}
 .light-grey {
   background: #222831;
 }
@@ -19,7 +34,7 @@ nav .brand-logo {
 .sentence-card {
   position: sticky;
   text-align: center;
-  padding: 12px;
+  padding: 4px;
 }
 
 .sentence-card .card-content {
@@ -27,8 +42,22 @@ nav .brand-logo {
 }
 
 .sentence-card-sticky {
-  position: sticky;
   top: 0;
+  z-index: 999;
+}
+
+.word-input-sticky {
+  top: 130px;
+}
+
+.sticky-top {
+  top: 0;
+  position: sticky;
+  z-index: 999;
+}
+
+.input-field{
+  background-color: white;
 }
 
 .remove-sentence {
