@@ -98,9 +98,6 @@ function appendSentenceInList(sentence) {
 }
 
 function recreateAnalyserTable() {
-    var validationText = document.getElementById('validation-text');
-    validationText.textContent = "";
-
     var analyser = document.getElementById('analyser');
     analyser.innerHTML = '';
 
