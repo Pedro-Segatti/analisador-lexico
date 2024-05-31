@@ -64,7 +64,7 @@ function appendSentenceInList(sentence) {
     var sentenceList = document.getElementById('sentence-list');
 
     var card = document.createElement('div');
-    var cardId = "card-" + sentences.length;
+    var cardId = "card-" + sentences.length - 1;
     card.classList.add('col', 's2');
 
     card.innerHTML = `
@@ -73,7 +73,7 @@ function appendSentenceInList(sentence) {
                 <div class="row">
                     <span class="card-title center">${sentence.word}</span>
                     
-                    <button class="btn-small waves-effect remove-sentence" onclick="removeSentence(this, ${sentences.length})">
+                    <button class="btn-small waves-effect remove-sentence" onclick="removeSentence(this, ${sentences.length - 1})">
                         <i class="material-icons">delete</i>
                     </button>
                 </div>
@@ -194,7 +194,7 @@ function recreateAnalyserTable() {
 function removeSentence(button, sentencePosition) {
     var card = button.closest('.col');
     card.remove();
-    sentences.pop(sentencePosition);
+    sentences.splice(sentencePosition, 1); // Remove a frase na posição específica
 
     if (sentences.length == 0) {
         var inputWord = document.getElementById('input-word-div');
@@ -206,7 +206,6 @@ function removeSentence(button, sentencePosition) {
         input.value = "";
     }
 }
-
 
 function createRule(sentence) {
     const letters = sentence.word.split('');
@@ -233,7 +232,7 @@ function createRule(sentence) {
         lastRule = new State(description, letters[i], lastRule, null);
         sentence.statesList.push(lastRule);
     }
-    console.log(sentences);
+
     sentence.statesList.reverse();
     alphabet.sort();
 
@@ -281,7 +280,6 @@ function lexicalAnalyser() {
 
     availableSentences = [...availableSentences];
 
-    console.log(availableSentences);
 
     if (availableSentences.length !== 0) {
         availableSentences.forEach(availableSentence => {
