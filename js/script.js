@@ -40,6 +40,7 @@ function addSentence() {
         return;
     }
 
+    sentence = input.value.trim().replace(" ", "");
     for (let i = 0; i < sentences.length; i++) {
         if (sentences[i].word === sentence) {
             input.value = "";
