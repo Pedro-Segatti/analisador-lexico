@@ -33,6 +33,10 @@ document.getElementById('reloadLink').addEventListener('click', function () {
     location.reload();
 });
 
+/**
+ * 
+ * Adiciona a sentença que posteriormente será validada. Sempre que adiciona uma nova sentença a tabela é recriada. 
+ */
 function addSentence() {
     var input = document.getElementById("sentences");
     var sentence = input.value;
@@ -61,6 +65,11 @@ function addSentence() {
     input.value = "";
 }
 
+/**
+ * Apenas adiciona a nova sentença na tela 
+ * 
+ * @param {Sentence} sentence 
+ */
 function appendSentenceInList(sentence) {
     var sentenceList = document.getElementById('sentence-list');
 
@@ -98,6 +107,10 @@ function appendSentenceInList(sentence) {
     }
 }
 
+/**
+ * Recria toda a tabela de acordo com as regras que estão ativas no momento.
+ *  
+ */
 function recreateAnalyserTable() {
     var analyser = document.getElementById('analyser');
     analyser.innerHTML = '';
@@ -192,6 +205,11 @@ function recreateAnalyserTable() {
     analyser.appendChild(table);
 }
 
+/**
+ * Remove a sentença e recria a tabela
+ * @param {*} button 
+ * @param {*} sentencePosition 
+ */
 function removeSentence(button, sentencePosition) {
     var card = button.closest('.col');
     card.remove();
@@ -208,6 +226,11 @@ function removeSentence(button, sentencePosition) {
     }
 }
 
+/**
+ * Cria os estados que a sentença pode assumir.
+ * 
+ * @param {Sentence} sentence 
+ */
 function createRule(sentence) {
     const letters = sentence.word.split('');
 
@@ -259,20 +282,20 @@ function lexicalAnalyser() {
     }
 
     letters = input.value.split("");
-    availableSentences = new Set();
+    availableSentences = new Set(); // Lista de Sentenças válidas
 
     sentences.forEach(sentence => {
         sentenceControl = [];
         for (let i = 0; i < letters.length; i++) {
             var validSentence = false;
-            if (sentence.statesList.length - 1 >= i) {
+            if (sentence.statesList.length - 1 >= i) { // itera estado(letra) por estado. Se a sentença é menor que a regra atual já não é valido.
                 var state = sentence.statesList[i];
                 validSentence = letters[i] == state.letter;
                 sentenceControl.push(validSentence);
             }
         }
 
-        if (sentenceControl.every(element => element === true) && letters.length <= sentence.statesList.length - 1) {
+        if (sentenceControl.every(element => element === true) && letters.length <= sentence.statesList.length - 1) { // Se todas as letras são válidas de acordo com as sentenças, adiciona na lista de válidas
             availableSentences.add(sentence);
         } else {
             availableSentences.delete(sentence);
@@ -280,7 +303,6 @@ function lexicalAnalyser() {
     });
 
     availableSentences = [...availableSentences];
-
 
     if (availableSentences.length !== 0) {
         availableSentences.forEach(availableSentence => {
